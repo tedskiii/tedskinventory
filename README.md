@@ -29,7 +29,7 @@ Step by step mengerjakan Tugas 2:
 18. Setelah deployment berjalan dengan lancar kita dapat mengecek domain aplikasi main yang sudah kita deploy
 
 Berikut adalah bagan penjelasan yang berisikan request client dan kaitan antara urls.py, views.py, models.py, dan berkas html.
-![BAGAN_PENJELASAN](C:\Users\Lenovo\OneDrive - UNIVERSITAS INDONESIA\Documents\KULIAH\AKADEMIS\SEMESTER 3\PBP\TUGAS\TUGAS 2\FOTO BAGAN\Bagan.png)
+![BAGAN_PENJELASAN](Bagan.png)
 
 Mengapa kita menggunakan virtual environment? Apakah kita tetap dapat membuat aplikasi web berbasis Django tanpa menggunakan virtual environment?
 => Kita menggunakan virtual environment dalam pengembangan Django supaya workspace kita lebih terorganisir untuk masing masing proyek. Virtual Environment berperan juga supaya tidak terjadi masalah seperti tabrakan versi dan juga berguna untuk menjaga dependensi jadi lebih teratur . Sebenarnya kita bisa saja kita membuat Aplikasi tanpa virtual environment, tetapi disarankan untuk menggunakannya agar proyek-proyek kita lebih terorganisir.
