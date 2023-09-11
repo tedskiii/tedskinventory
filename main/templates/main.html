@@ -36,6 +36,17 @@
       color: #000000;
       text-align: center;
     }
+
+    .card img {
+      width: 100%;
+      height: auto;
+    }
+
+    .credit{
+      font-size: 12px;
+      text-align: center;
+    }
+
   </style>
 </head>
 <body>
@@ -47,6 +58,10 @@
     <div class="card">
       <div class = "name">
         <h4>{{ product.name }}</h4>
+      </div>
+      <img src="{{ product.image_url }}" alt="{{ product.name }}" >
+      <div class = "credit">
+        <p>(Source: uniqlo.com)</p>
       </div>
       <h5>{{ product.price }}</h5>
       <p>{{ product.description }}</p>
