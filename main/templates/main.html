@@ -26,22 +26,30 @@
       border: 1px solid #ccc;
       border-radius: 5px;
       padding: 10px;
-      text-align: left;
+      text-align: justify;
       display: inline-block;
       vertical-align: top;
+    }
+
+    .name {
+      font-size: 18px;
+      color: #000000;
+      text-align: center;
     }
   </style>
 </head>
 <body>
     <h1>Selamat Datang Di Tedskinventory</h1>
 
-    <h3>Website Inventaris Baju Local Pride Idaman Kamu</h3>
+    <h3>Website Inventaris Pakaian Local Pride Idaman Kamu</h3>
 
     {% for product in products %}
     <div class="card">
-      <h5>{{ product.name }}</h5>
-      <p>Harga: {{ product.price }}</p>
-      <p>Deskripsi: {{ product.description }}</p>
+      <div class = "name">
+        <h4>{{ product.name }}</h4>
+      </div>
+      <h5>{{ product.price }}</h5>
+      <p>{{ product.description }}</p>
       <p>Jumlah Stok: {{ product.amount }}</p>
     </div>
     {% endfor %}

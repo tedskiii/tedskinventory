@@ -6,14 +6,26 @@ def show_main(request):
         {
             'name': 'T-Shirt Garis Lengan Pendek',
             'price': 'Rp.199.000',
-            'description': 'T-Shirt dengan bahan katun kualitas terbaik dari Indonesia dengan motif garis-garis',
-            'amount': 25
+            'description': 'T-Shirt dengan motif garis-garis dari bahan kualitas terbaik di Indonesia',
+            'amount': 25,
         },
-        {
+        {   
             'name': 'Celana Jeans Slim Fit',
             'price': 'Rp.299.000',
-            'description': 'Celana jeans dengan potongan slim fit dengan bahan kualitas terbaik dari Indonesia yang nyaman digunakan sehari-hari',
-            'amount': 15
+            'description': 'Celana jeans dengan potongan slim fit dari bahan kualitas terbaik di Indonesia',
+            'amount': 15,
+        },
+        {
+            'name': 'Jaket Casual',
+            'price': 'Rp.399.000',
+            'description': 'Jaket casual dengan desain trendy dari bahan kualitas terbaik di Indonesia',
+            'amount': 10,
+        },
+        {
+            'name': 'Sepatu Sneakers',
+            'price': 'Rp.499.000',
+            'description': 'Sepatu sneakers dengan desain sporty dari bahan kualitas terbaik di Indonesia',
+            'amount': 20
         }
     ]
 
