@@ -1,34 +1,47 @@
 from django.shortcuts import render
+from django.http import HttpResponse
+from django.core import serializers
+from django.http import HttpResponseRedirect
+from main.forms import ProductForm
+from django.urls import reverse
+from main.models import Product
 
 # Create your views here.
 def show_main(request):
-    products = [
-        {
-            'name': 'T-Shirt Garis Lengan Pendek',
-            'image_url': 'https://image.uniqlo.com/UQ/ST3/AsianCommon/imagesgoods/437241/item/goods_69_437241.jpg?width=750', 
-            'price': 'Rp.199.000',
-            'description': 'T-Shirt dengan motif garis-garis dari bahan kualitas terbaik di Indonesia',
-            'amount': 25,
-        },
-        {
-            'name': 'Jaket Casual',
-            'image_url': 'https://image.uniqlo.com/UQ/ST3/AsianCommon/imagesgoods/459591/sub/goods_459591_sub14.jpg?width=750',
-            'price': 'Rp.249.000',
-            'description': 'Jaket casual dengan desain trendy dari bahan kualitas terbaik di Indonesia',
-            'amount': 10,
-        },
-        {
-            'name': 'Celana Jeans Slim Fit',
-            'image_url': 'https://image.uniqlo.com/UQ/ST3/AsianCommon/imagesgoods/459688/sub/goods_459688_sub14.jpg?width=750',
-            'price': 'Rp.299.000',
-            'description': 'Celana jeans dengan potongan slim fit dari bahan kualitas terbaik di Indonesia',
-            'amount': 15,
-        },
-    ]
-
+    products = Product.objects.all()
+    total_items = products.count() 
+    message = f"Kamu menyimpan {total_items} jenis pakaian pada aplikasi ini"
+    
     context = {
-        'products': products
+        'products': products,
+        'message': message, 
     }
-
     return render(request, "main.html", context)
+
+
+def create_product(request):
+    form = ProductForm(request.POST or None)
+
+    if form.is_valid() and request.method == "POST":
+        form.save()
+        return HttpResponseRedirect(reverse('main:show_main'))
+
+    context = {'form': form}
+    return render(request, "create_product.html", context)
+
+def show_xml(request):
+    data = Product.objects.all()
+    return HttpResponse(serializers.serialize("xml", data), content_type="application/xml")
+
+def show_json(request):
+    data = Product.objects.all()
+    return HttpResponse(serializers.serialize("json", data), content_type="application/json")
+
+def show_xml_by_id(request, id):
+    data = Product.objects.filter(pk=id)
+    return HttpResponse(serializers.serialize("xml", data), content_type="application/xml")
+
+def show_json_by_id(request, id):
+    data = Product.objects.filter(pk=id)
+    return HttpResponse(serializers.serialize("json", data), content_type="application/json")
 

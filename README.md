@@ -1,9 +1,9 @@
-Link Domain Adaptable:
-https://tedskinventory.adaptable.app
+# Link Domain :
+- [Aplikasi Adaptable](https://tedskinventory.adaptable.app)
+- [Domain PBP CSUI](theodoore-kasyfillah-tedskinventory.pbp.cs.ui.ac.id)
 
-https://tedskinventory.adaptable.app/main/ (untuk langsung ke main)
-
-Step by step mengerjakan Tugas 2:
+# TUGAS 2
+## Langkah-Langkah untuk Mengerjakan Tugas 2
 1. Buat Repo di local sama github dengan nama proyek (nama project saya = tedskinventory)
 2. Buka CMD dari repo localnya
 3. Inisialisasi git dulu di reponya trus verifikasi akun github
@@ -28,12 +28,15 @@ Step by step mengerjakan Tugas 2:
 17. Setelah berhasil dipush ke github kita akan melakukan deployment ke adaptable dengan memilih repo yang kita gunakan untuk proyek kali ini dengan deployment, database, dan server http wsgi yang sudah kita install pada saat inisialiasi yang terletak pada requirements.txt
 18. Setelah deployment berjalan dengan lancar kita dapat mengecek domain aplikasi main yang sudah kita deploy
 
+## Bagan Penjelasan
 Berikut adalah bagan penjelasan yang berisikan request client dan kaitan antara urls.py, views.py, models.py, dan berkas html.
 ![BAGAN_PENJELASAN](Bagan.png)
 
+## Mengapa Menggunakan Virtual Environment?
 Mengapa kita menggunakan virtual environment? Apakah kita tetap dapat membuat aplikasi web berbasis Django tanpa menggunakan virtual environment?
 => Kita menggunakan virtual environment dalam pengembangan Django supaya workspace kita lebih terorganisir untuk masing masing proyek. Virtual Environment berperan juga supaya tidak terjadi masalah seperti tabrakan versi dan juga berguna untuk menjaga dependensi jadi lebih teratur . Sebenarnya kita bisa saja kita membuat Aplikasi tanpa virtual environment, tetapi disarankan untuk menggunakannya agar proyek-proyek kita lebih terorganisir.
 
+## Penjelasan Mengenai MVC, MVT, dan MVVM
 Berikut adalah penjelasan tentang MVC, MVT, dan MVVM:
 MVC (Model-View-Controller): MVC adalah konsep arsitektur aplikasi yang umum digunakan untuk mengimplementasikan UI, data, dan controller. konsep ini menekankan pemisahan antara logika bisnis aplikasi dan tampilan. Pemisahan ini memberikan pembagian kerja yang lebih baik dan pemeliharaan yang lebih baik.
 
@@ -49,3 +52,5 @@ https://stackoverflow.com/questions/62181396/django-does-the-virtual-environment
 https://developer.mozilla.org/en-US/docs/Glossary/MVC
 https://www.javatpoint.com/django-mvt
 https://learn.microsoft.com/en-us/dotnet/architecture/maui/mvvm
+
+# TUGAS 3

@@ -1,72 +1,222 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Tedskinventory</title>
   <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background-color: #f0f0f0;
+      color: #333333;
+    }
+
+    header {
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 20px 0;
+      margin: 0;
+      width: 100%;
+      top: 0;
+      left: 0;
+    }
+    
+
+    header h1 {
+      font-size: 36px;
+      margin: 0;
+    }
+
+    header h3 {
+      font-size: 24px;
+      margin: 10px 0;
+    }
+
     h1 {
       font-size: 36px;
-      color: #000000; 
-      text-align: center; 
+      margin-bottom: 20px;
     }
 
     h3 {
       font-size: 24px;
-      color: #000000; 
-      text-align: center;
+      margin-bottom: 15px;
+    }
+
+    h4 {
+      font-size: 20px;
+      margin-bottom: 10px;
     }
 
     h5 {
-      font-size: 18px;
-      color: #000000;
+      font-size: 16px;
+    }
+
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
     }
 
     .card {
       width: 300px;
-      margin: 10px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      padding: 10px;
+      margin: 20px;
+      border-radius: 10px;
+      padding: 20px;
       text-align: justify;
-      display: inline-block;
-      vertical-align: top;
+      background-color: #fff;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      transition: transform 0.2s;
+    }
+
+    .card:hover {
+      transform: translateY(-10px);
     }
 
     .name {
-      font-size: 18px;
-      color: #000000;
+      font-size: 24px;
+      color: #333333;
       text-align: center;
+      margin-bottom: 10px;
     }
 
     .card img {
       width: 100%;
       height: auto;
+      border-radius: 10px 10px 0 0;
     }
 
-    .credit{
+    .credit {
       font-size: 12px;
       text-align: center;
+      color: #888888;
+      margin-top: 10px;
     }
 
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    th, td {
+      border: 1px solid #ddd;
+      padding: 10px;
+      text-align: left;
+    }
+
+    th {
+      background-color: #333;
+      color: #fff;
+    }
+
+    .add-product-button {
+      background-color: #333;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      cursor: pointer;
+      margin: 20px 0;
+    }
+    
+    .add-product-button:hover {
+      background-color: #0056b3;
+    }
+
+    .toggle-button {
+      background-color: #333;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      cursor: pointer;
+      margin: 20px 0;
+    }
+
+    .toggle-button:hover {
+      background-color: #0056b3;
+    }
+    
   </style>
 </head>
 <body>
+  <header>
     <h1>Selamat Datang Di Tedskinventory</h1>
-
     <h3>Website Inventaris Pakaian Local Pride Idaman Kamu</h3>
+  </header>
 
+  <button class="toggle-button" id="toggleViewButton">Switch View</button>
+
+  <div class="container">
     {% for product in products %}
     <div class="card">
-      <div class = "name">
+      <div class="name">
         <h4>{{ product.name }}</h4>
       </div>
-      <img src="{{ product.image_url }}" alt="{{ product.name }}" >
-      <div class = "credit">
-        <p>(Source: uniqlo.com)</p>
-      </div>
-      <h5>{{ product.price }}</h5>
+      <h5>Rp.{{ product.price }}</h5>
       <p>{{ product.description }}</p>
       <p>Jumlah Stok: {{ product.amount }}</p>
+      <div class="credit">
+        <p>(Source: uniqlo.com)</p>
+      </div>
     </div>
     {% endfor %}
+  </div>
+
+  <table id="tableView" class="table-view">
+    <thead>
+      <tr>
+        <th>Nama</th>
+        <th>Harga</th>
+        <th>Deskripsi</th>
+        <th>Jumlah Stok</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for product in products %}
+      <tr>
+        <td>{{ product.name }}</td>
+        <td>Rp.{{ product.price }}</td>
+        <td>{{ product.description }}</td>
+        <td>{{ product.amount }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <a href="{% url 'main:create_product' %}">
+    <button class="add-product-button">
+      Add New Product
+    </button>
+  </a>
+  
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const toggleViewButton = document.getElementById("toggleViewButton");
+      const cardView = document.querySelector(".container");
+      const tableView = document.getElementById("tableView");
+
+      let isCardView = true;
+
+      toggleViewButton.addEventListener("click", function () {
+        if (isCardView) {
+          cardView.style.display = "none";
+          tableView.style.display = "table";
+          isCardView = false;
+          toggleViewButton.textContent = "Switch to Card View";
+        } else {
+          cardView.style.display = "flex";
+          tableView.style.display = "none";
+          isCardView = true;
+          toggleViewButton.textContent = "Switch to Table View";
+        }
+      });
+    });
+  </script>
 </body>
 </html>
