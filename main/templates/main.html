@@ -7,26 +7,24 @@
   <style>
     body {
       font-family: Arial, sans-serif;
-      padding: 20px;
       margin: 0;
       display: flex;
       flex-direction: column;
       align-items: center;
-      background-color: #f0f0f0;
-      color: #333333;
+      background-color: #242526;
+      color: #f0f0f0;
     }
 
     header {
-      background-color: #333;
-      color: #fff;
+      background-color: #5ABCFF;
+      color: #242526;
       text-align: center;
-      padding: 20px 0;
+      padding: 10px;
       margin: 0;
       width: 100%;
       top: 0;
       left: 0;
     }
-    
 
     header h1 {
       font-size: 36px;
@@ -35,7 +33,43 @@
 
     header h3 {
       font-size: 24px;
-      margin: 10px 0;
+      margin: 0;
+    }
+
+    .header-text {
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+    
+    .header-buttons {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 20px;
+    }
+    
+
+    .header-buttons button {
+      background-color: #fff;
+      color: #333;
+      border: none;
+      padding: 10px 20px;
+      cursor: pointer;
+      margin-left: 10px;
+    }
+
+    .header-buttons button:hover {
+      background-color: #ddd;
+    }
+
+    .navbar {
+      color: #fff; 
+      padding: 10px
+    }
+
+    .navbar h2 {
+      font-size: 24px;
+      margin: 0;
     }
 
     h1 {
@@ -69,9 +103,10 @@
       border-radius: 10px;
       padding: 20px;
       text-align: justify;
-      background-color: #fff;
+      background-color: #444; 
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
       transition: transform 0.2s;
+      color: #f0f0f0; 
     }
 
     .card:hover {
@@ -80,7 +115,6 @@
 
     .name {
       font-size: 24px;
-      color: #333333;
       text-align: center;
       margin-bottom: 10px;
     }
@@ -94,7 +128,6 @@
     .credit {
       font-size: 12px;
       text-align: center;
-      color: #888888;
       margin-top: 10px;
     }
 
@@ -102,21 +135,22 @@
       width: 100%;
       border-collapse: collapse;
       margin-top: 20px;
+      background-color: #444; 
     }
 
     th, td {
-      border: 1px solid #ddd;
+      border: 1px solid #333;
       padding: 10px;
       text-align: left;
+      color: #f0f0f0; 
     }
 
     th {
-      background-color: #333;
-      color: #fff;
+      background-color: #222; 
     }
 
     .add-product-button {
-      background-color: #333;
+      background-color: #0056b3;
       color: #fff;
       border: none;
       padding: 10px 20px;
@@ -125,31 +159,49 @@
     }
     
     .add-product-button:hover {
-      background-color: #0056b3;
+      background-color: #004090;
     }
 
+    .add-product-button,
     .toggle-button {
-      background-color: #333;
+      background-color: #0056b3;
       color: #fff;
+      font-weight: bold;
       border: none;
       padding: 10px 20px;
       cursor: pointer;
-      margin: 20px 0;
+      margin: 20px 10px; 
+      border-radius: 5px; 
     }
 
+
     .toggle-button:hover {
-      background-color: #0056b3;
+      background-color: #004090;
     }
     
   </style>
+  {% extends 'base.html' %} 
 </head>
 <body>
-  <header>
-    <h1>Selamat Datang Di Tedskinventory</h1>
-    <h3>Website Inventaris Pakaian Local Pride Idaman Kamu</h3>
-  </header>
+  {% block content %}
+  <nav>
+    <div class="navbar">
+      <h2>tedskinventory</h2>
+    </div>
+  </nav>
 
-  <button class="toggle-button" id="toggleViewButton">Switch View</button>
+  <header>
+    <h1>Selamat Datang Di tedskinventory</h1>
+    <p></p>
+    <h3>{{message}}</h3>
+
+    <div class="header-buttons">
+      <a href="{% url 'main:create_product' %}">
+        <button class="add-product-button">Add Item</button>
+      </a>
+      <button class="toggle-button" id="toggleViewButton">Switch to Table View</button>
+    </div>
+  </header>
 
   <div class="container">
     {% for product in products %}
@@ -174,6 +226,7 @@
         <th>Harga</th>
         <th>Deskripsi</th>
         <th>Jumlah Stok</th>
+        
       </tr>
     </thead>
     <tbody>
@@ -188,19 +241,16 @@
     </tbody>
   </table>
 
-  <a href="{% url 'main:create_product' %}">
-    <button class="add-product-button">
-      Add New Product
-    </button>
-  </a>
-  
-
   <script>
     document.addEventListener("DOMContentLoaded", function () {
       const toggleViewButton = document.getElementById("toggleViewButton");
       const cardView = document.querySelector(".container");
       const tableView = document.getElementById("tableView");
 
+      // Initialize as card view
+      cardView.style.display = "flex";
+      tableView.style.display = "none";
+      
       let isCardView = true;
 
       toggleViewButton.addEventListener("click", function () {
@@ -218,5 +268,6 @@
       });
     });
   </script>
+  {% endblock content %}
 </body>
 </html>
