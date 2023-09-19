@@ -25,7 +25,6 @@ def create_product(request):
     if form.is_valid() and request.method == "POST":
         form.save()
         return HttpResponseRedirect(reverse('main:show_main'))
-
     context = {'form': form}
     return render(request, "create_product.html", context)
 
