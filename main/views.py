@@ -9,8 +9,8 @@ from main.models import Product
 # Create your views here.
 def show_main(request):
     products = Product.objects.all()
-    total_items = products.count() 
-    message = f"Kamu menyimpan {total_items} jenis pakaian pada aplikasi ini"
+    total_products = products.count() 
+    message = f"Kamu menyimpan {total_products} jenis pakaian pada aplikasi ini"
     
     context = {
         'products': products,

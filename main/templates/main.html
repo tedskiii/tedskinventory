@@ -40,30 +40,9 @@
       padding: 20px;
       margin-bottom: 20px;
     }
-    
-    .header-buttons {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin-top: 20px;
-    }
-    
-
-    .header-buttons button {
-      background-color: #fff;
-      color: #333;
-      border: none;
-      padding: 10px 20px;
-      cursor: pointer;
-      margin-left: 10px;
-    }
-
-    .header-buttons button:hover {
-      background-color: #ddd;
-    }
 
     .navbar {
-      color: #fff; 
+      color: #f0f0f0; 
       padding: 10px
     }
 
@@ -94,7 +73,8 @@
     .container {
       display: flex;
       flex-wrap: wrap;
-      justify-content: center;
+      justify-content: left;
+      margin: 0 -10px;
     }
 
     .card {
@@ -104,13 +84,7 @@
       padding: 20px;
       text-align: justify;
       background-color: #444; 
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-      transition: transform 0.2s;
       color: #f0f0f0; 
-    }
-
-    .card:hover {
-      transform: translateY(-10px);
     }
 
     .name {
@@ -119,23 +93,19 @@
       margin-bottom: 10px;
     }
 
-    .card img {
-      width: 100%;
-      height: auto;
-      border-radius: 10px 10px 0 0;
+    h3.card-view {
+      text-align: left;
     }
-
-    .credit {
-      font-size: 12px;
-      text-align: center;
-      margin-top: 10px;
+    
+    h3.table-view {
+      text-align: left;
     }
 
     table {
       width: 100%;
-      border-collapse: collapse;
       margin-top: 20px;
-      background-color: #444; 
+      background-color: #444;
+      margin-bottom: 100px;
     }
 
     th, td {
@@ -151,21 +121,7 @@
 
     .add-product-button {
       background-color: #0056b3;
-      color: #fff;
-      border: none;
-      padding: 10px 20px;
-      cursor: pointer;
-      margin: 20px 0;
-    }
-    
-    .add-product-button:hover {
-      background-color: #004090;
-    }
-
-    .add-product-button,
-    .toggle-button {
-      background-color: #0056b3;
-      color: #fff;
+      color: #f0f0f0;
       font-weight: bold;
       border: none;
       padding: 10px 20px;
@@ -174,9 +130,31 @@
       border-radius: 5px; 
     }
 
-
-    .toggle-button:hover {
+    .add-product-button:hover {
       background-color: #004090;
+    }
+
+    footer {
+      background-color: #303846;
+      color: #f0f0f0;
+      text-align: left;
+      padding: 10px 20px;
+      width: 100%;
+      bottom: 0;
+      left: 0;
+    }    
+
+    footer p {
+      margin: 20px;
+    }
+
+    footer h3 {
+      margin: 10px;
+    }
+
+    footer h2{
+      text-align:right;
+      margin: 20px;
     }
     
   </style>
@@ -194,16 +172,13 @@
     <h1>Selamat Datang Di tedskinventory</h1>
     <p></p>
     <h3>{{message}}</h3>
-
-    <div class="header-buttons">
-      <a href="{% url 'main:create_product' %}">
-        <button class="add-product-button">Add Item</button>
-      </a>
-      <button class="toggle-button" id="toggleViewButton">Switch to Table View</button>
-    </div>
+    <a href="{% url 'main:create_product' %}">
+      <button class="add-product-button">Add Item</button>
+    </a>
   </header>
 
-  <div class="container">
+  <h3>Card View</h3> 
+  <div class="container"> 
     {% for product in products %}
     <div class="card">
       <div class="name">
@@ -215,7 +190,8 @@
     </div>
     {% endfor %}
   </div>
-
+  
+  <h3>Table View</h3> 
   <table id="tableView" class="table-view">
     <thead>
       <tr>
@@ -223,7 +199,6 @@
         <th>Harga</th>
         <th>Deskripsi</th>
         <th>Jumlah Stok</th>
-        
       </tr>
     </thead>
     <tbody>
@@ -238,33 +213,13 @@
     </tbody>
   </table>
 
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      const toggleViewButton = document.getElementById("toggleViewButton");
-      const cardView = document.querySelector(".container");
-      const tableView = document.getElementById("tableView");
-
-      // Initialize as card view
-      cardView.style.display = "flex";
-      tableView.style.display = "none";
-      
-      let isCardView = true;
-
-      toggleViewButton.addEventListener("click", function () {
-        if (isCardView) {
-          cardView.style.display = "none";
-          tableView.style.display = "table";
-          isCardView = false;
-          toggleViewButton.textContent = "Switch to Card View";
-        } else {
-          cardView.style.display = "flex";
-          tableView.style.display = "none";
-          isCardView = true;
-          toggleViewButton.textContent = "Switch to Table View";
-        }
-      });
-    });
-  </script>
+  <footer>
+    <h3>Created By</h3>
+    <p>Theodore Kasyfillah</p>
+    <p>2206083136</p>
+    <p>PBP B</p>
+    <h2>tedskinventory</h2>
+  </footer>
   {% endblock content %}
 </body>
 </html>
