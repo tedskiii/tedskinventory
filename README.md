@@ -313,19 +313,6 @@ Cara Saya Mengimplementasikan Checklist
      path('xml/<int:id>/', show_xml_by_id, name='show_xml_by_id'),
      path('json/<int:id>/', show_json_by_id, name='show_json_by_id'),
      ```
-9. **Testing Local**
-* Jalankan proyek secara local dengan perintah: 
-    ```
-        python manage.py runserver
-    ``` 
-
-10. **Push ke GitHub**
-    - Commit perubahan ke Git dengan perintah: 
-      ```shell
-      git add .
-      git commit -m "Pesan commit Anda"
-      git push origin master
-      ```
 
 ## Mengakses kelima URL di poin 2 menggunakan Postman, membuat screenshot dari hasil akses URL pada Postman, dan menambahkannya ke dalam README.md
 ### HASIL AKSES URL PADA POSTMAN
@@ -524,19 +511,6 @@ Penggunaan **Cookies**  pada dasarnya aman, tetapi ada beberapa risiko potensial
      ```python
       'last_login': request.COOKIES['last_login'],
      ```
-7. **Testing Local**
-* Jalankan proyek secara local dengan perintah: 
-    ```
-        python manage.py runserver
-    ``` 
-
-8. **Push ke GitHub**
-* Commit perubahan ke Git dengan perintah: 
-      ```shell
-      git add .
-      git commit -m "Pesan commit Anda"
-      git push origin master
-      ```
 
 ## Referensi Tugas 4
 * https://www.javatpoint.com/django-usercreationform.
