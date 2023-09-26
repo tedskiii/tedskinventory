@@ -1,27 +1,26 @@
-# Link Domain :
-- [Aplikasi Adaptable](https://tedskinventory.adaptable.app)
+# TUGAS PBP Theodore Kasyfillah
 
-
+<detail>
 <summary>TUGAS 2</summary>
 
 ## Langkah-langkah Membuat Proyek Django dan Deployment ke Adaptablle
 
-1. **Buat Repo di Lokal dan GitHub**
+1. **Buat Repo di Local dan GitHub**
    * Buat repositori dengan nama proyek (contoh: `tedskinventory`) di GitHub.
    * Clone repo tersebut.
 
-2. **Buka CMD di Repo Lokal**
-   * Buka terminal (CMD) dan navigasikan ke direktori repo lokal.
+2. **Buka CMD di Repo Local**
+   * Buka terminal (CMD) dan navigasikan ke direktori repo local.
 
 3. **Inisialisasi Git**
-   * Inisialisasi Git di dalam repo lokal dengan perintah: 
+   * Inisialisasi Git di dalam repo local dengan perintah: 
     ```shell
         git init
      ```
    * Verifikasi akun GitHub dengan perintah: 
      ```shell
-     git config --global user.name "YourName"
-     git config --global user.email "youremail@example.com"
+     git config user.name "tedskiii"
+     git config user.email "theodorekasyfillah06@gmail.com"
      ```
 
 4. **Inisialisasi Virtual Environment**
@@ -78,9 +77,8 @@
      from django.db import models
      from django.contrib.auth.models import User
      class Product(models.Model):
-        user = models.ForeignKey(User, on_delete=models.CASCADE)
-        image = models.ImageField(upload_to='products/', null=True, blank=True)
         name = models.CharField(max_length=255)
+        image = models.ImageField(upload_to='products/', null=True, blank=True)
         price = models.CharField(max_length=255)
         description = models.TextField()
         amount = models.IntegerField()
@@ -144,8 +142,8 @@
         ]
       ```
 
-12. **Testing Lokal**
-    * Jalankan proyek secara lokal dengan perintah: 
+12. **Testing Local**
+    * Jalankan proyek secara local dengan perintah: 
      ``` shell
      python manage.py runserver
      ``` 
@@ -215,6 +213,9 @@ JSON sering digunakan dalam pertukaran data antara aplikasi web modern karena be
 * SON dapat di-parse dengan mudah oleh JavaScript, bahasa yang digunakan di mayoritas webapp.
 
 ## Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
+Cara Saya Mengimplementasikan Checklist
+## Langkah-langkah untuk Menambahkan Fitur ke Proyek Django
+
 1. **Membuat Forms**
 * Buat file `forms.py` di dalam aplikasi `main`.
 * Tambahkan fields dari `forms` yang berasal dari class `Product` yang telah dideklarasikan di `models.py`.
@@ -276,7 +277,7 @@ JSON sering digunakan dalam pertukaran data antara aplikasi web modern karena be
 
 4. **Menambahkan Button pada `main.html`**
 * Tambahkan tombol pada halaman `main.html` yang akan mengarahkan pengguna ke halaman yang berisi form untuk menambahkan produk.
-     ``` html
+     ```
      <a href="{% url 'main:create_product' %}">
           <button class="add-product-button">Add Item</button>
      </a>
@@ -284,7 +285,7 @@ JSON sering digunakan dalam pertukaran data antara aplikasi web modern karena be
 
 5. **Menambahkan Fungsi Tampilan dalam Format XML dan JSON**
 * Buat 4 fungsi baru: `show_xml`, `show_json`, `show_xml_by_id`, dan `show_json_by_id`.
-     ``` python
+     ```
      def show_xml(request):
         data = Product.objects.all()
         return HttpResponse(serializers.serialize("xml", data), content_type="application/xml")
@@ -304,19 +305,27 @@ JSON sering digunakan dalam pertukaran data antara aplikasi web modern karena be
     Fungsi ini akan mengambil data dari database menggunakan serializer dan mengubahnya menjadi format XML atau JSON.
 
 8. **Routing**
-* Tambahkan URL untuk masing-masing fungsi yang ingin diterapkan pada file `urls.py`.
-     ``` python
+* Tambahkan URL untuk masing-masing fungsi yang ingin Anda terapkan pada file `urls.py`.
+     ```
      path('create-product', create_product, name='create_product'),
      path('xml/', show_xml, name='show_xml'), 
      path('json/', show_json, name='show_json'), 
      path('xml/<int:id>/', show_xml_by_id, name='show_xml_by_id'),
      path('json/<int:id>/', show_json_by_id, name='show_json_by_id'),
      ```
-9. **Uji Coba**
-* Jalankan proyek secara lokal dengan perintah: 
-    ``` shell
+9. **Testing Local**
+* Jalankan proyek secara local dengan perintah: 
+    ```
         python manage.py runserver
     ``` 
+
+10. **Push ke GitHub**
+    - Commit perubahan ke Git dengan perintah: 
+      ```shell
+      git add .
+      git commit -m "Pesan commit Anda"
+      git push origin master
+      ```
 
 ## Mengakses kelima URL di poin 2 menggunakan Postman, membuat screenshot dari hasil akses URL pada Postman, dan menambahkannya ke dalam README.md
 ### HASIL AKSES URL PADA POSTMAN
@@ -343,12 +352,13 @@ JSON sering digunakan dalam pertukaran data antara aplikasi web modern karena be
 <summary>TUGAS 4</summary>
 
 ## Apa itu Django UserCreationForm, dan jelaskan apa kelebihan dan kekurangannya?
-**Django UserCreationForm** adalah formulir yang disediakan oleh Django untuk membuat pengguna baru. Formulir ini memiliki tiga field: `username`, `password1`, dan `password2` (yang digunakan untuk konfirmasi password). UserCreationForm juga dapat disesuaikan untuk model pengguna khusus.
+**Django UserCreationForm** adalah formulir yang disediakan oleh Django untuk membuat pengguna baru. Formulir ini memiliki tiga field: `username`, `password1`, dan `password2` (yang digunakan untuk konfirmasi password). Anda juga dapat menyesuaikan UserCreationForm untuk model pengguna khusus.
 Kelebihan menggunakan UserCreationForm adalah:
-- Django menyediakan formulir ini secara default, jadi  tidak perlu membuatnya dari awal.
+- Django menyediakan formulir ini secara default, jadi Anda tidak perlu membuatnya dari awal.
 - Formulir ini sudah mencakup validasi dasar, seperti memeriksa apakah password cocok.
 Namun, ada juga beberapa kekurangan:
-- Formulir ini mungkin tidak mencakup semua bidang yang dibutuhkan untuk aplikasi, jadi  mungkin perlu disesuaikan dengan cara membuat formulir khusus yang mewarisi dari UserCreationForm dan menambahkan bidang tambahan tersebut.
+- Formulir ini mungkin tidak mencakup semua bidang yang Anda butuhkan untuk aplikasi Anda, jadi Anda mungkin perlu menyesuaikannya.
+- Jika Anda memiliki model pengguna khusus dengan bidang tambahan, Anda harus membuat formulir khusus yang mewarisi dari UserCreationForm dan menambahkan bidang tambahan tersebut.
 
 ##  Apa perbedaan antara autentikasi dan otorisasi dalam konteks Django, dan mengapa keduanya penting?
 Autentikasi dan otorisasi adalah dua konsep penting dalam Django dan pengembangan web pada umumnya. **Autentikasi** adalah proses verifikasi identitas pengguna. Dalam konteks Django, ini biasanya melibatkan memeriksa apakah kombinasi nama pengguna dan password yang diberikan oleh pengguna cocok dengan yang ada di database². 
@@ -361,32 +371,171 @@ Kedua konsep ini penting karena mereka membantu menjaga keamanan aplikasi web. A
 ## Apakah penggunaan cookies aman secara default dalam pengembangan web, atau apakah ada risiko potensial yang harus diwaspadai?
 Penggunaan **Cookies**  pada dasarnya aman, tetapi ada beberapa risiko potensial yang harus diwaspadai. Cookies dapat menyimpan data dan ID pengguna, yang berarti bahwa jika seorang penyerang dapat mengakses cookies tersebut, mereka mungkin dapat mencuri identitas pengguna atau melakukan tindakan lain atas nama mereka Selain itu, karena cookies disimpan dalam bentuk teks, mereka mungkin rentan terhadap serangan seperti Cross-Site Scripting (XSS) atau Cross-Site Request Forgery (CSRF). Oleh karena itu, penting untuk selalu mengimplementasikan praktik keamanan terbaik saat bekerja dengan cookies.
 
-##  Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
-### Implementasi Fungsi Registrasi, Login, dan Logout:
-#### Registrasi:
-1. Buat halaman pendaftaran dengan menggunakan Django UserCreationForm atau buat formulir pendaftaran kustom.
-2. Tangani permintaan pendaftaran dan validasi formulir.
-3. Buat objek pengguna baru jika data yang dimasukkan valid.
-#### Login:
-1. Buat halaman login dengan menggunakan Django AuthenticationForm atau buat formulir login kustom.
-2. Tangani permintaan login dan validasi formulir.
-3. Autentikasikan pengguna dengan menggunakan authenticate dan login Django.
-#### Logout:
-1. Buat tautan atau tombol untuk logout pada halaman aplikasi.
-2. Tangani permintaan logout dengan menggunakan logout Django.
+##  Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step 
+1. **Membuat Fungsi Register**
+* Buat fungsi baru di `views.py` dengan nama `register`.
+     ``` python
+     def register(request):
+        form = UserCreationForm()
+        if request.method == "POST":
+            form = UserCreationForm(request.POST)
+            if form.is_valid():
+                form.save()
+                messages.success(request, 'Your account has been successfully created!')
+                return redirect('main:login')
+        context = {'form':form}
+        return render(request, 'register.html', context)
+     ```
+     
+* Render Fungsi tersebut pada sebuah file template html 
+     ```html
+     <div class="card">
+        <h1>Register</h1>
 
-### Membuat Akun Pengguna dan Dummy Data:
-1. Buat dua akun pengguna dengan menggunakan halaman registrasi yang telah buat.
-2. Buat tiga dummy data untuk masing-masing akun pengguna dengan menggunakan model aplikasi.
-3. Data-data ini akan tersimpan di database lokal.
+     <form method="POST">
+        {% csrf_token %}
+         <div class="form-field">
+           <label for="{{ form.username.id_for_label }}">Username:</label>
+           {{ form.username }}
+         </div>
 
-### Menghubungkan Model Item dengan User:
-1. Pastikan model Item memiliki relasi ke model User. Ini biasanya dilakukan dengan menambahkan bidang ForeignKey ke model User dalam model Item.
-2. Saat pengguna menambahkan item baru, pastikan item tersebut terkait dengan pengguna yang sedang login.
+         <div class="form-field">
+           <label for="{{ form.password1.id_for_label }}">Password:</label>
+           {{ form.password1 }}
+         </div>
 
-### Menampilkan Informasi Pengguna yang Sedang Login:
-1. Buat halaman utama aplikasi yang akan menampilkan detail informasi pengguna yang sedang login seperti username dan informasi lainnya.
-2. Gunakan request.user untuk mengakses informasi pengguna yang sedang login.Terapkan cookies untuk menyimpan informasi terakhir login pengguna.
+         <div class="form-field">
+           <label for="{{ form.password2.id_for_label }}">Confirm Password:</label>
+           {{ form.password2 }}
+         </div>
+
+         <div class="form-field">
+           <input type="submit" name="submit" value="Register" class="btn login_btn">
+         </div>
+     </form>
+
+     {% if messages %}
+     <ul>
+        {% for message in messages %}
+        <li>{{ message }}</li>
+        {% endfor %}
+     </ul>
+     {% endif %}
+
+     Already have an account? <a href="{% url 'main:login' %}">Login Now</a>
+     </div>
+     </div>
+
+     {% endblock content %}
+     ```
+     
+2. **Membuat Fungsi Login**
+* Buat fungsi baru di `views.py` dengan nama `login_user`.
+     ``` python
+     def login_user(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            return redirect('main:show_main')
+        else:
+            messages.info(request, 'Sorry, incorrect username or password. Please try again.')
+    context = {}
+    return render(request, 'login.html', context)
+     ```
+     
+* Render Fungsi tersebut pada sebuah file template html 
+     ```html
+     <div class="card">
+        <h1>Login</h1>
+
+      <form method="POST">
+        {% csrf_token %}
+        <div class="form-field">
+          <label for="username">Username:</label>
+          <input type="text" name="username" id="username"  class="form-control">
+        </div>
+
+        <div class="form-field">
+          <label for="password">Password:</label>
+          <input type="password" name="password" id="password" class="form-control">
+        </div>
+
+        <div class="form-field">
+          <input type="submit" name="submit" value="Login" class="btn login_btn">
+        </div>
+      </form>
+
+      {% if messages %}
+      <ul>
+        {% for message in messages %}
+        <li>{{ message }}</li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+  
+     Don't have an account yet? <a href="{% url 'main:register' %}">Register Now</a>
+     </div>
+
+     {% endblock content %}
+     ```
+
+3. **Membuat Fungsi Logout**
+* Buat fungsi baru di `views.py` dengan nama `logou_user`.
+     ``` python
+     def logout_user(request):
+    logout(request)
+    response = HttpResponseRedirect(reverse('main:login'))
+    response.delete_cookie('last_login')
+    return response
+     ```
+     
+* Render Fungsi tersebut pada sebuah file template html 
+     ```html
+     <a href="{% url 'main:logout' %}">
+      <button class="logout-button">Logout</button>
+     </a>
+     ```
+     
+4. **Menghubungkan product dengan user**
+* Untuk menghubungkan model dengan user kita harus menambahkan model baru bernama user menggunakan foreign key
+
+     ``` python
+        user = models.ForeignKey(User, on_delete=models.CASCADE)
+     ```
+* Kemudian lakukan filter terhadap products pada `views.py` untuk memfilter product yang muncul pada aplikasi sesuai dengan user yang melakukan login
+     ``` python
+        products = Product.objects.filter(user=request.user)
+     ```
+
+5.  **Membuat dua akun pengguna dengan masing-masing tiga dummy data menggunakan model yang telah dibuat pada aplikasi sebelumnya untuk setiap akun di local.**
+* Buat dua akun pengguna di page `register` yang telah dibuat.
+* Buat tiga dummy data untuk masing-masing akun pengguna, Data akan tersimpan di database local.
+
+6. **Menampilkan detail informasi pengguna yang sedang logged in seperti username dan menerapkan cookies seperti `last_login` pada halaman utama aplikasi.**
+* Tambahkan sebuah fungsi untuk menambah cookie pada `login_user` ketika kondisi tidak none
+     ```python
+     response.set_cookie('last_login', str(datetime.datetime.now()))
+     ```
+* Tambahkan context baru di fungsi show main untuk melihat data `last_login` pada template `main.html`
+
+     ```python
+      'last_login': request.COOKIES['last_login'],
+     ```
+7. **Testing Local**
+* Jalankan proyek secara local dengan perintah: 
+    ```
+        python manage.py runserver
+    ``` 
+
+8. **Push ke GitHub**
+* Commit perubahan ke Git dengan perintah: 
+      ```shell
+      git add .
+      git commit -m "Pesan commit Anda"
+      git push origin master
 
 ## Referensi Tugas 4
 * https://www.javatpoint.com/django-usercreationform.
