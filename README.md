@@ -1,6 +1,6 @@
 # TUGAS PBP Theodore Kasyfillah
 
-<detail>
+<details>
 <summary>TUGAS 2</summary>
 
 ## Langkah-langkah Membuat Proyek Django dan Deployment ke Adaptablle
