@@ -520,3 +520,216 @@ Penggunaan **Cookies**  pada dasarnya aman, tetapi ada beberapa risiko potensial
 * https://www.pythontutorial.net/django-tutorial/django-cookies/.
 * https://www.dewaweb.com/blog/cookies-panduan-lengkap/.
 </details>
+
+<details>
+<summary>TUGAS 4</summary>
+
+## Manfaat dari setiap element selector dan kapan waktu yang tepat untuk menggunakannya
+Element selector dalam CSS digunakan untuk memilih elemen HTML berdasarkan nama tag-nya¹. Berikut adalah beberapa jenis selector dan manfaatnya:
+* **Tag Selector**: Memilih elemen berdasarkan nama tag. Misalnya, `p { color: blue; }` akan mewarnai semua teks dalam elemen `<p>` menjadi biru¹.
+* **Class Selector**: Memilih elemen berdasarkan nama class yang diberikan. Misalnya, `.pink { color: white; background: pink; }` akan menerapkan gaya tersebut ke semua elemen dengan class "pink"¹.
+* **ID Selector**: Digunakan untuk memilih elemen berdasarkan ID. ID bersifat unik dan hanya boleh digunakan oleh satu elemen saja¹.
+* **Attribute Selector**: Memilih elemen berdasarkan atribut. Misalnya, `input[type=text] { color: cyan; }` akan menerapkan gaya tersebut ke semua elemen `<input>` dengan atribut type 'text'¹.
+* **Universal Selector**: Digunakan untuk memilih semua elemen pada jangkauan (scope) tertentu¹.
+
+## HTML5 Tag yang saya ketahui
+HTML5 menambahkan sejumlah tag baru untuk memperkaya konten web, termasuk:
+* `<article>`: Mendefinisikan konten independen seperti postingan blog atau artikel berita.
+* `<aside>`: Mendefinisikan konten sampingan seperti sidebar⁶.
+* `<details>`: Mendefinisikan detail tambahan yang dapat ditampilkan atau disembunyikan oleh pengguna⁶.
+* `<figure>` dan `<figcaption>`: Digunakan untuk mengelompokkan konten media (seperti gambar, diagram) dengan caption⁶.
+* `<section>`: Mendefinisikan bagian dalam dokumen, seperti bab, tab, atau setiap bagian yang dapat diberi judul⁶.
+
+## Perbedaan antara margin dan padding
+Margin dan padding adalah dua properti CSS yang mengatur ruang di sekitar elemen. Margin adalah ruang di luar batas elemen, sedangkan padding adalah ruang di dalam batas elemen
+
+## Perbedaan antara framework CSS Tailwind dan Bootstrap
+Bootstrap adalah framework CSS yang menyediakan komponen siap pakai, sedangkan Tailwind CSS menggunakan pendekatan "utility-first" yang memungkinkan kita membangun desain yang sangat kustom sesuai kebutuhan. Bootstrap cocok untuk proyek dengan desain tradisional yang membutuhkan kerangka kerja yang stabil dan mudah digunakan. Sementara itu, Tailwind memberikan kebebasan kreatif yang lebih besar dan memungkinkan penggunaan class yang sangat spesifik. Jadi, pilihan antara keduanya tergantung pada kebutuhan proyek, preferensi desain, dan tingkat fleksibilitas yang diinginkan.
+
+## Cara mengimplementasikan checklist di atas secara step-by-step
+Saya mengimplementasikan checklist menggunakan CSS dengan pendekatan Internal Style Sheet yaitu dengan menambahkan tag style pada masing masing file html.
+Contoh Desain Page dengan internal style sheet
+```css
+<style>
+  body, h1, h2, h3, h4, h5 {
+    font-family: 'Montserrat', sans-serif;
+  }
+
+  body {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #242526;
+    color: #f0f0f0;
+  }
+
+  header {
+    background-color: #5ABCFF;
+    color: #242526;
+    text-align: center;
+    padding: 10px;
+    margin: 0;
+    width: 100%;
+    top: 0;
+    left: 0;
+  }
+
+  header h1 {
+    font-size: 36px;
+    margin: 0;
+  }
+
+  header h3 {
+    font-size: 24px;
+    margin: 0;
+  }
+
+  .header-text {
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+
+  .navbar {
+    color: #f0f0f0;
+    padding: 10px;
+  }
+
+  .navbar h2 {
+    font-size: 24px;
+    margin: 0;
+  }
+
+  h1 {
+    font-size: 36px;
+    margin-bottom: 20px;
+  }
+
+  h3 {
+    font-size: 24px;
+    margin-bottom: 15px;
+  }
+
+  h4 {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+
+  h5 {
+    font-size: 16px;
+  }
+
+  .container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: left;
+    margin: 0 -10px;
+  }
+
+  .card {
+    width: 300px;
+    margin: 20px;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: justify;
+    background-color: #444;
+    color: #f0f0f0;
+  }
+
+  .image-container {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+    margin-bottom: 10px;
+  }
+
+  .image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .name {
+    font-size: 24px;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+
+  .add-product-button,
+  .logout-button {
+    background-color: #0056b3;
+    color: #f0f0f0;
+    font-weight: bold;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    margin: 20px 10px;
+    border-radius: 5px;
+  }
+
+  .add-product-button:hover,
+  .logout-button:hover {
+    background-color: #004090;
+  }
+
+  footer {
+    background-color: #303846;
+    color: #f0f0f0;
+    text-align: left;
+    padding: 10px 20px;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+  }
+
+  footer p {
+    margin: 20px;
+  }
+
+  footer h3 {
+    margin: 10px;
+  }
+
+  footer h2 {
+    text-align: right;
+    margin: 20px;
+  }
+
+  .amount-container {
+    display: flex;
+    align-items: center;
+  }
+
+  .amount-container .add-amount-button,
+  .amount-container .subtract-amount-button {
+    margin: 0 5px;
+    background-color: #0056b3;
+    color: #f0f0f0;
+    font-weight: bold;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 100%;
+    font-size: 20px;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+
+  .amount-container .amount {
+    margin: 0 10px;
+  }
+</style>
+```
+
+
+## Referensi Tugas 5
+* https://www.petanikode.com/css-selektor/.
+* https://www.w3schools.com/TAGs/.
+* https://www.malasngoding.com/belajar-css-margin-dan-padding-pada-css/.
+* https://revou.co/kosakata/tailwind.
+* https://askanydifference.com/id/difference-between-bootstrap-and-tailwind/.
+</details>

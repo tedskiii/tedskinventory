@@ -239,6 +239,9 @@
           <button class="subtract-amount-button round-button" type="submit">-</button>
         </form>
       </div>
+      <form method="POST" action="{% url 'main:edit_product' product.id %}">
+        {% csrf_token %}
+        <button class="add-product-button" type="submit">Edit</button>
       <form method="POST" action="{% url 'main:delete_product' product.id %}">
         {% csrf_token %}
         <button class="add-product-button" type="submit">Hapus</button>
