@@ -18,4 +18,4 @@ urlpatterns = [
     path('logout/', logout_user, name='logout'),
     path('get-product/', get_product_json, name='get_product_json'),
     path('create-product-ajax/', add_product_ajax, name='add_product_ajax')
-] + static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)  
+]
