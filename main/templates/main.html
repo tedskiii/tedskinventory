@@ -1,269 +1,123 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tedskinventory</title>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700" />
-  <style>
-    body, h1, h2, h3, h4, h5 {
-      font-family: 'Montserrat', sans-serif;
-    }
+{% extends 'base.html' %}
 
-    body {
-      margin: 0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      background-color: #242526;
-      color: #f0f0f0;
-    }
-
-    header {
-      background-color: #5ABCFF;
-      color: #242526;
-      text-align: center;
-      padding: 10px;
-      margin: 0;
-      width: 100%;
-      top: 0;
-      left: 0;
-    }
-
-    header h1 {
-      font-size: 36px;
-      margin: 0;
-    }
-
-    header h3 {
-      font-size: 24px;
-      margin: 0;
-    }
-
-    .header-text {
-      padding: 20px;
-      margin-bottom: 20px;
-    }
-
-    .navbar {
-      color: #f0f0f0; 
-      padding: 10px
-    }
-
-    .navbar h2 {
-      font-size: 24px;
-      margin: 0;
-    }
-
-    h1 {
-      font-size: 36px;
-      margin-bottom: 20px;
-    }
-
-    h3 {
-      font-size: 24px;
-      margin-bottom: 15px;
-    }
-
-    h4 {
-      font-size: 20px;
-      margin-bottom: 10px;
-    }
-
-    h5 {
-      font-size: 16px;
-    }
-
-    .container {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: left;
-      margin: 0 -10px;
-    }
-
-    .card {
-      width: 300px;
-      margin: 20px;
-      border-radius: 10px;
-      padding: 20px;
-      text-align: justify;
-      background-color: #444; 
-      color: #f0f0f0; 
-    }
-
-    .image-container {
-      width: 100%;
-      height: 200px; 
-      overflow: hidden; 
-      margin-bottom: 10px; 
-    }
-
-    .image-container img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover; 
-    }
-
-    .name {
-      font-size: 24px;
-      text-align: center;
-      margin-bottom: 10px;
-    }
-
-    .add-product-button {
-      background-color: #0056b3;
-      color: #f0f0f0;
-      font-weight: bold;
-      border: none;
-      padding: 10px 20px;
-      cursor: pointer;
-      margin: 20px 10px; 
-      border-radius: 5px; 
-    }
-
-    .add-product-button:hover {
-      background-color: #004090;
-    }
-
-    .logout-button {
-      background-color: #0056b3;
-      color: #f0f0f0;
-      font-weight: bold;
-      border: none;
-      padding: 10px 20px;
-      cursor: pointer;
-      margin: 20px 10px; 
-      border-radius: 5px; 
-    }
-
-    .logout-button:hover {
-      background-color: #004090;
-    }
-
-
-    footer {
-      background-color: #303846;
-      color: #f0f0f0;
-      text-align: left;
-      padding: 10px 20px;
-      width: 100%;
-      bottom: 0;
-      left: 0;
-    }    
-
-    footer p {
-      margin: 20px;
-    }
-
-    footer h3 {
-      margin: 10px;
-    }
-
-    footer h2{
-      text-align:right;
-      margin: 20px;
-    }
-
-    .amount-container {
-      display: flex;
-      align-items: center;
-    }
-    
-    .amount-container .add-amount-button,
-    .amount-container .subtract-amount-button {
-      margin: 0 5px;
-      background-color: #0056b3;
-      color: #f0f0f0;
-      font-weight: bold;
-      border: none;
-      padding: 10px 20px;
-      cursor: pointer;
-      border-radius: 100%;
-      font-size: 20px;
-      width: 30px;
-      height: 30px; 
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-    }
-    
-    .amount-container .amount {
-      margin: 0 10px;
-    }
-
-</style>
-  {% extends 'base.html' %} 
-</head>
-<body>
-  {% block content %}
-  <nav>
-    <div class="navbar">
-      <h2>tedskinventory</h2>
+{% block content %}
+<nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container">
+        <a class="navbar-brand" href="#">Tedskinventory</a>
+        <a href="{% url 'main:logout' %}" class="btn btn-outline-danger">Logout</a>
     </div>
-  </nav>
+</nav>
 
-  <header>
+<header class="bg-info text-center py-5">
     <h1>Selamat Datang Di tedskinventory</h1>
-    <p></p>
-    <h3>"Halo {{ user_name }} Kamu menyimpan {{ total_products }} jenis pakaian pada aplikasi ini"</h3>
+    <h3>"Halo {{ user_name }} Kamu menyimpan {{ total_products }} jenis barang pada aplikasi ini"</h3>
     <a href="{% url 'main:create_product' %}">
-      <button class="add-product-button">Add Item</button>
+        <button class="btn btn-success">Add Item</button>
     </a>
-  </header>
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Add Product by AJAX</button>
+</header>
 
-  <div class="container">
-    {% for product in products %}
-    <div class="card">
-      <div class="image-container">
-        {% if product.image %}
-        <img src="{{ product.image.url }}" alt="{{ product.name }}">
-        {% else %}
-        <p>Tidak ada gambar tersedia.</p>
-    {% endif %}
-      </div> 
-      <div class="name">
-        <h4>{{product.name}}</h4>
-      </div>
-      <h5>Rp.{{product.price}}</h5>
-      <p>{{product.description}}</p>
-      <div class="amount-container">
-        Jumlah Stok: 
-        <form method="POST" action="{% url 'main:add_amount' product.id %}" style="display: inline;">
-          {% csrf_token %}
-          <button class="add-amount-button round-button" type="submit">+</button>
-        </form>
-        <p class="amount">{{product.amount}}</p>
-        <form method="POST" action="{% url 'main:subtract_amount' product.id %}" style="display: inline;">
-          {% csrf_token %}
-          <button class="subtract-amount-button round-button" type="submit">-</button>
-        </form>
-      </div>
-      <form method="POST" action="{% url 'main:edit_product' product.id %}">
-        {% csrf_token %}
-        <button class="add-product-button" type="submit">Edit</button>
-      <form method="POST" action="{% url 'main:delete_product' product.id %}">
-        {% csrf_token %}
-        <button class="add-product-button" type="submit">Hapus</button>
-      </form>
-      
+<div class="container mt-4">
+    <div class="row" id="product_container">
     </div>
-    {% endfor %}
-  </div>
-  
-<a href="{% url 'main:logout' %}">
-      <button class="logout-button">Logout</button>
-</a>
+</div>
 
-<h5>Sesi terakhir login: {{ last_login }}</h5>
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content" style="background-color: #363636; color: #fff;">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Add New Product</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="color: #fff;"></button>
+            </div>
+            <div class="modal-body">
+                <form id="form" onsubmit="return false;">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="name" class="col-form-label">Name:</label>
+                        <input type="text" class="form-control" id="name" name="name" style="background-color: #2F3030; color: #fff;"></input>
+                    </div>
+                    <div class="mb-3">
+                        <label for "price" class="col-form-label">Price:</label>
+                        <input type="number" class="form-control" id="price" name="price" style="background-color: #2F3030; color: #fff;"></input>
+                    </div>
+                    <div class="mb-3">
+                        <label for="description" class="col-form-label">Description:</label>
+                        <textarea class="form-control" id="description" name="description" style="background-color: #2F3030; color: #fff;"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="amount" class="col-form-label">Amount:</label>
+                        <input type="number" class="form-control" id="amount" name="amount" style="background-color: #2F3030; color: #fff;">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer" style="background-color: #282828;">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" style="color: #fff;">Close</button>
+                <button type="button" class="btn btn-primary" id="button_add" data-bs-dismiss="modal">Add Product</button>
+            </div>
+        </div>
+    </div>
+</div>
 
-  <footer>
-    <h3>Created By</h3>
-    <p>Theodore Kasyfillah</p>
-    <p>2206083136</p>
-    <p>PBP B</p>
-    <h2>tedskinventory</h2>
-  </footer>
-  {% endblock content %}
-</body>
-</html> 
+<div class="container mt-4">
+    <h5>Sesi terakhir login: {{ last_login }}</h5>
+</div>
+
+<footer class="bg-dark text-white py-3">
+    <div class="container">
+        <h3>Created By</h3>
+        <p>Theodore Kasyfillah</p>
+        <p>2206083136</p>
+        <p>PBP B</p>
+        <h2>tedskinventory</h2>
+    </div>
+</footer>
+
+<script>
+    async function getProducts() {
+        return fetch("{% url 'main:get_product_json' %}").then((res) => res.json());
+    }
+
+    async function refreshProducts() {
+        const products = await getProducts();
+        const productContainer = document.getElementById("product_container");
+        productContainer.innerHTML = "";
+
+        products.forEach((product) => {
+            const productCard = document.createElement("div");
+            productCard.classList.add("col-md-4", "mb-4");
+
+            productCard.innerHTML = `
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">${product.fields.name}</h4>
+                        <h5 class="card-text">Rp.${product.fields.price}</h5>
+                        <p class="card-text">${product.fields.description}</p>
+                        <div class="d-flex align-items-center">
+                            <p class="mb-0">Jumlah Stok:</p>
+                            <p class="mb-0 mx-2">${product.fields.amount}</p>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            `;
+
+            productContainer.appendChild(productCard);
+        });
+    }
+
+    function addProduct() {
+        fetch("{% url 'main:add_product_ajax' %}", {
+            method: "POST",
+            body: new FormData(document.querySelector('#form'))
+        }).then(refreshProducts);
+
+        document.getElementById("form").reset();
+        return false;
+    }
+
+    document.getElementById("button_add").onclick = addProduct;
+
+    refreshProducts();
+</script>
+
+{% endblock content %}

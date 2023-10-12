@@ -9,6 +9,7 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 import datetime
+from django.views.decorators.csrf import csrf_exempt
 
 @login_required(login_url='/login')
 def show_main(request):
@@ -84,31 +85,19 @@ def logout_user(request):
     response.delete_cookie('last_login')
     return response
 
-def add_amount(request, product_id):
-    product = Product.objects.get(pk=product_id)
-    product.amount += 1
-    product.save()
-    return redirect('main:show_main')
+def get_product_json(request):
+    product_item =  Product.objects.filter(user=request.user)
+    return HttpResponse(serializers.serialize('json', product_item))
 
-def subtract_amount(request, product_id):
-    product = Product.objects.get(pk=product_id)
-    if product.amount > 0:
-        product.amount -= 1
-        product.save()
-    return redirect('main:show_main')
+@csrf_exempt
+def add_product_ajax(request):
+    if request.method == 'POST':
+        name = request.POST.get("name")
+        price = request.POST.get("price")
+        description = request.POST.get("description")
+        amount = request.POST.get("amount")
+        user = request.user
+        new_product = Product(name=name, price=price, description=description, amount = amount, user=user)
+        new_product.save()
 
-def delete_product(request, product_id):
-    product = Product.objects.get(pk=product_id)
-    product.delete()
-    return redirect('main:show_main')
-
-def edit_product(request, id):
-    product = Product.objects.get(pk = id)
-    form = ProductForm(request.POST or None, instance=product)
-
-    if form.is_valid() and request.method == "POST":
-        form.save()
-        return HttpResponseRedirect(reverse('main:show_main'))
-
-    context = {'form': form}
-    return render(request, "edit_product.html", context)
+        return HttpResponse(b"CREATED", status=201)
