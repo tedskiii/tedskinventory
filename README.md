@@ -734,6 +734,8 @@ Contoh Desain Page dengan internal style sheet
 * https://askanydifference.com/id/difference-between-bootstrap-and-tailwind/.
 </details>
 
+<details>
+<summary>TUGAS 6</summary>
 
 ## Perbedaan antara asynchronous programming dengan synchronous programming:
 Asynchronous programming adalah cara berbeda dalam menulis program yang tidak harus menunggu tugas tertentu selesai sebelum melanjutkan yang lain. Ini berarti beberapa tugas dapat berjalan bersamaan. Di sisi lain, synchronous programming adalah pendekatan tradisional di mana tugas-tugas dieksekusi satu per satu sesuai dengan urutan dan prioritasnya. Kelemahan utamanya adalah jika ada tugas yang memakan waktu, maka yang lain harus menunggu.
@@ -822,4 +824,5 @@ Referensi Tugas 6:
 * https://www.hostinger.co.id/tutorial/apa-itu-ajax
 * https://medium.com/javascript-indonesia-community/berbagai-teknik-dan-cara-melakukan-fetch-api-menggunakan-javascript-yang-harus-kamu-ketahui-5a94f361643a
 
+</details>
 
