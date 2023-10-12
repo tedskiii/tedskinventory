@@ -522,23 +522,23 @@ Penggunaan **Cookies**  pada dasarnya aman, tetapi ada beberapa risiko potensial
 </details>
 
 <details>
-<summary>TUGAS 4</summary>
+<summary>TUGAS 5</summary>
 
 ## Manfaat dari setiap element selector dan kapan waktu yang tepat untuk menggunakannya
-Element selector dalam CSS digunakan untuk memilih elemen HTML berdasarkan nama tag-nya¹. Berikut adalah beberapa jenis selector dan manfaatnya:
-* **Tag Selector**: Memilih elemen berdasarkan nama tag. Misalnya, `p { color: blue; }` akan mewarnai semua teks dalam elemen `<p>` menjadi biru¹.
-* **Class Selector**: Memilih elemen berdasarkan nama class yang diberikan. Misalnya, `.pink { color: white; background: pink; }` akan menerapkan gaya tersebut ke semua elemen dengan class "pink"¹.
-* **ID Selector**: Digunakan untuk memilih elemen berdasarkan ID. ID bersifat unik dan hanya boleh digunakan oleh satu elemen saja¹.
-* **Attribute Selector**: Memilih elemen berdasarkan atribut. Misalnya, `input[type=text] { color: cyan; }` akan menerapkan gaya tersebut ke semua elemen `<input>` dengan atribut type 'text'¹.
-* **Universal Selector**: Digunakan untuk memilih semua elemen pada jangkauan (scope) tertentu¹.
+Element selector dalam CSS digunakan untuk memilih elemen HTML berdasarkan nama tag-nya. Berikut adalah beberapa jenis selector dan manfaatnya:
+* **Tag Selector**: Memilih elemen berdasarkan nama tag. Misalnya, `p { color: blue; }` akan mewarnai semua teks dalam elemen `<p>` menjadi biru.
+* **Class Selector**: Memilih elemen berdasarkan nama class yang diberikan. Misalnya, `.pink { color: white; background: pink; }` akan menerapkan gaya tersebut ke semua elemen dengan class "pink".
+* **ID Selector**: Digunakan untuk memilih elemen berdasarkan ID. ID bersifat unik dan hanya boleh digunakan oleh satu elemen saja.
+* **Attribute Selector**: Memilih elemen berdasarkan atribut. Misalnya, `input[type=text] { color: cyan; }` akan menerapkan gaya tersebut ke semua elemen `<input>` dengan atribut type 'text'.
+* **Universal Selector**: Digunakan untuk memilih semua elemen pada jangkauan (scope) tertentu.
 
 ## HTML5 Tag yang saya ketahui
 HTML5 menambahkan sejumlah tag baru untuk memperkaya konten web, termasuk:
 * `<article>`: Mendefinisikan konten independen seperti postingan blog atau artikel berita.
-* `<aside>`: Mendefinisikan konten sampingan seperti sidebar⁶.
-* `<details>`: Mendefinisikan detail tambahan yang dapat ditampilkan atau disembunyikan oleh pengguna⁶.
-* `<figure>` dan `<figcaption>`: Digunakan untuk mengelompokkan konten media (seperti gambar, diagram) dengan caption⁶.
-* `<section>`: Mendefinisikan bagian dalam dokumen, seperti bab, tab, atau setiap bagian yang dapat diberi judul⁶.
+* `<aside>`: Mendefinisikan konten sampingan seperti sidebar.
+* `<details>`: Mendefinisikan detail tambahan yang dapat ditampilkan atau disembunyikan oleh pengguna.
+* `<figure>` dan `<figcaption>`: Digunakan untuk mengelompokkan konten media (seperti gambar, diagram) dengan caption.
+* `<section>`: Mendefinisikan bagian dalam dokumen, seperti bab, tab, atau setiap bagian yang dapat diberi judul.
 
 ## Perbedaan antara margin dan padding
 Margin dan padding adalah dua properti CSS yang mengatur ruang di sekitar elemen. Margin adalah ruang di luar batas elemen, sedangkan padding adalah ruang di dalam batas elemen
@@ -733,3 +733,93 @@ Contoh Desain Page dengan internal style sheet
 * https://revou.co/kosakata/tailwind.
 * https://askanydifference.com/id/difference-between-bootstrap-and-tailwind/.
 </details>
+
+
+## Perbedaan antara asynchronous programming dengan synchronous programming:
+Asynchronous programming adalah cara berbeda dalam menulis program yang tidak harus menunggu tugas tertentu selesai sebelum melanjutkan yang lain. Ini berarti beberapa tugas dapat berjalan bersamaan. Di sisi lain, synchronous programming adalah pendekatan tradisional di mana tugas-tugas dieksekusi satu per satu sesuai dengan urutan dan prioritasnya. Kelemahan utamanya adalah jika ada tugas yang memakan waktu, maka yang lain harus menunggu.
+
+## Event-Driven Programming:
+Event-Driven Programming adalah cara berpikir dalam menulis program di mana alur program bergantung pada peristiwa atau kejadian tertentu. Peristiwa ini bisa berasal dari pengguna (seperti mengklik tombol), pesan dari program lain, atau tindakan lainnya. Contohnya dalam JavaScript dan AJAX, ketika pengguna melakukan sesuatu (seperti mengklik tombol), program akan merespons dengan melakukan tindakan tertentu.
+
+## Asynchronous Programming dalam AJAX:
+AJAX adalah teknik dalam pengembangan aplikasi web yang memungkinkan komunikasi antara browser dan server terjadi secara asynchronous. Ini berarti permintaan data ke server dapat diproses di latar belakang tanpa harus mereload seluruh halaman web. Dengan demikian, pengguna akan melihat perubahan pada halaman web tanpa harus menunggu lama.
+
+## Fetch API vs jQuery dalam AJAX:
+Fetch API dan jQuery AJAX adalah dua cara berbeda untuk melakukan permintaan HTTP dalam JavaScript. Fetch API mengembalikan objek Promise dan secara default tidak mengirim atau menerima cookie dari server. Di sisi lain, jQuery AJAX adalah library yang mempermudah penggunaan AJAX dalam browser. Namun, Fetch API lebih modern dan banyak digunakan dalam aplikasi web terkini.
+
+## Penjelasan Step By Step:
+1. Mengambil Data Produk dengan AJAX GET
+Untuk ini, kita menggunakan AJAX GET untuk mengambil data produk dari server. Kode JavaScript yang telah dibuat, getProducts, melakukan ini dengan mengambil data dalam format JSON dari server.
+get_product_json di views.py
+```python
+def get_product_json(request):
+    product_item =  Product.objects.filter(user=request.user)
+    return HttpResponse(serializers.serialize('json', product_item))
+``` 
+getProducts di scripts main.html
+```javascript
+async function getProducts() {
+        return fetch("{% url 'main:get_product_json' %}").then((res) => res.json());
+    }
+```
+
+2. Menampilkan Data Produk di Halaman
+Kita menggunakan fungsi refreshProducts untuk menampilkan produk yang telah diambil dari server. Ini memungkinkan kita untuk melihat daftar produk tanpa harus memuat ulang seluruh halaman. Ini akan berguna ketika kita ingin menambah atau memperbarui produk.
+``` javascript
+async function refreshProducts() {
+        const products = await getProducts();
+        const productContainer = document.getElementById("product_container");
+        productContainer.innerHTML = "";
+
+        products.forEach((product) => {
+            const productCard = document.createElement("div");
+            productCard.classList.add("col-md-4", "mb-4");
+
+            productCard.innerHTML = `
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">${product.fields.name}</h4>
+                        <h5 class="card-text">Rp.${product.fields.price}</h5>
+                        <p class="card-text">${product.fields.description}</p>
+                        <div class="d-flex align-items-center">
+                            <p class="mb-0">Jumlah Stok:</p>
+                            <p class="mb-0 mx-2">${product.fields.amount}</p>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            `;
+
+            productContainer.appendChild(productCard);
+        });
+    }
+```
+3. Menambah Produk Baru dengan AJAX POST
+Selanjutnya, kita ingin menambahkan produk baru ke dalam aplikasi kita. Ini dilakukan melalui modal yang muncul ketika kita mengklik tombol "Add Product by AJAX. Kode JavaScript, seperti addProduct, digunakan untuk mengambil data dari formulir modal dan mengirimkannya ke server menggunakan AJAX POST. Setelah produk berhasil ditambahkan, tampilan produk diperbarui secara asinkron.
+
+``` javascript
+function addProduct() {
+        fetch("{% url 'main:add_product_ajax' %}", {
+            method: "POST",
+            body: new FormData(document.querySelector('#form'))
+        }).then(refreshProducts);
+
+        document.getElementById("form").reset();
+        return false;
+    }
+
+    document.getElementById("button_add").onclick = addProduct;
+
+    refreshProducts();
+```
+
+4. Melakukan Collect Static
+Kita dapat melakukan collect static dengan melakukan command python manage.py collectstatics dan akan mengeluarkan luaran berikut
+`125 static files copied to 'C:\Users\Lenovo\OneDrive - UNIVERSITAS INDONESIA\Documents\KULIAH\AKADEMIS\SEMESTER 3\PBP\TUGAS\TUGAS 2\static'.`
+
+Referensi Tugas 6:
+* https://binus.ac.id/malang/2022/05/asynchronous-vs-synchronous-programming/
+* https://www.hostinger.co.id/tutorial/apa-itu-ajax
+* https://medium.com/javascript-indonesia-community/berbagai-teknik-dan-cara-melakukan-fetch-api-menggunakan-javascript-yang-harus-kamu-ketahui-5a94f361643a
+
+
