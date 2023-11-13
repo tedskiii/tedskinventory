@@ -158,7 +158,7 @@ Link Website:
       ```
 
 14. **Deployment ke Adaptable**
-    * Lakukan deployment ke Adaptable dengan memilih repo yang digunakan. Pastikan database dan server HTTP WSGI sudah terkonfigurasi.
+    * Lakukan deployment ke Adaptable dengan memilih repo yang digunakan. Pastikan database dan server HTTP WSGI sudah terkonfigurasi
 
 15. **Selesaikan Deployment**
     * Lanjutkan langkah-langkah deployment yang diperlukan untuk menyelesaikan proses deployment ke Adaptablle.
