@@ -18,7 +18,6 @@ def show_main(request):
 
     context = {
         'user_name': request.user.username,
-        'total_products': total_products,
         'products': products,
         'last_login': last_login,
     }
