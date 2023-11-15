@@ -14,12 +14,10 @@ from django.views.decorators.csrf import csrf_exempt
 @login_required(login_url='/login')
 def show_main(request):
     products = Product.objects.filter(user=request.user)
-    total_products = products.count()
     last_login = request.COOKIES.get('last_login', None)
 
     context = {
         'user_name': request.user.username,
-        'total_products': total_products,
         'products': products,
         'last_login': last_login,
     }
